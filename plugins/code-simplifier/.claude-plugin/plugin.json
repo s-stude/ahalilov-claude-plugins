@@ -1,0 +1,9 @@
+{
+  "name": "code-simplifier",
+  "version": "0.1.0",
+  "description": "Autonomously simplifies and refines code for clarity, consistency, and maintainability while preserving all functionality",
+  "author": {
+    "name": "Akim Khalilov"
+  },
+  "keywords": ["code-quality", "refactoring", "simplification", "best-practices", "automation"]
+}

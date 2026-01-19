@@ -1,0 +1,36 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-plugins-official/main/schemas/marketplace.json",
+  "name": "ahalilov-plugins",
+  "version": "1.0.0",
+  "owner": {
+    "name": "Akim Khalilov",
+    "email": "a@sstude.com"
+  },
+  "metadata": {
+    "description": "Quality plugins for code simplification and development workflow automation",
+    "pluginRoot": "./"
+  },
+  "plugins": [
+    {
+      "name": "code-simplifier",
+      "version": "0.1.0",
+      "description": "Autonomously simplifies and refines code for clarity, consistency, and maintainability while preserving all functionality",
+      "author": {
+        "name": "Agent Skills Team"
+      },
+      "source": "./plugins/code-simplifier",
+      "category": "productivity",
+      "license": "MIT",
+      "keywords": [
+        "code-quality",
+        "refactoring",
+        "simplification",
+        "best-practices",
+        "automation",
+        "code-review",
+        "clean-code",
+        "maintainability"
+      ]
+    }
+  ]
+}

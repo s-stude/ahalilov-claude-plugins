@@ -1,0 +1,22 @@
+{
+  "name": "test-config",
+  "version": "1.0.0",
+  "description": "This JSON config file should NOT be simplified",
+  "settings": {
+    "enabled": true,
+    "verbose": true,
+    "timeout": 30000
+  },
+  "rules": [
+    {
+      "id": 1,
+      "name": "rule-one",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "rule-two",
+      "active": false
+    }
+  ]
+}

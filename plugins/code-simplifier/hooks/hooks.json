@@ -1,0 +1,17 @@
+{
+  "description": "Automatically triggers code simplification after code modifications",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A file has been written or edited. Determine if code simplification should run.\n\nFile path from tool input: $TOOL_INPUT\n\nCheck the following criteria:\n\n1. **Is it a source code file?** Only process files with these extensions: .js, .jsx, .ts, .tsx, .py, .go, .rs, .java, .c, .cpp, .cc, .h, .hpp, .rb, .php, .mjs, .cjs\n   - Skip: .md, .json, .yaml, .yml, .txt, .xml, .csv, .html, .css, .scss, .lock, .gitignore, etc.\n\n2. **Is it in an excluded directory?** Skip files in these directories:\n   - node_modules/, .git/, dist/, build/, coverage/, .next/, .nuxt/, vendor/, target/, __pycache__/\n\n3. **Check settings if .claude/code-simplifier.local.md exists:**\n   - If enabled: false → skip\n   - If excludePatterns array exists → skip if file matches any pattern\n\nIf ALL criteria pass:\n- Output: {\"systemMessage\": \"Triggering code simplifier for [filename]\", \"continue\": true}\n- Then invoke the code-simplifier agent to analyze and improve the file\n\nIf ANY criteria fails:\n- Output: {\"systemMessage\": \"\", \"suppressOutput\": true, \"continue\": true}\n- Do NOT trigger the agent, silently continue\n\nBe efficient: only trigger simplification for actual source code files that should be processed.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

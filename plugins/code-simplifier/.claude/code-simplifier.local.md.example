@@ -1,0 +1,160 @@
+---
+enabled: true
+verbosity: brief
+excludePatterns:
+  - "**/*.test.js"
+  - "**/*.spec.ts"
+  - "**/legacy/**"
+  - "**/vendor/**"
+customRules: |
+  - Always use async/await instead of .then() chains for promises
+  - Prefer named exports over default exports
+  - Extract magic numbers to named constants with SCREAMING_SNAKE_CASE
+  - Use optional chaining (?.) for safe property access
+  - Prefer early returns over else blocks
+---
+
+# Code Simplifier Settings
+
+This file contains project-specific configuration for the code-simplifier plugin.
+
+## Settings Fields
+
+### enabled
+**Type:** boolean
+**Default:** `true`
+
+Master switch to enable or disable automatic code simplification.
+
+- `true`: Plugin runs automatically after Write/Edit operations
+- `false`: Plugin is disabled, only manual `/simplify` command works
+
+### verbosity
+**Type:** string (`silent` | `brief` | `detailed`)
+**Default:** `brief`
+
+Controls how much output the simplifier provides:
+
+- `silent`: No output, changes visible via git diff only
+- `brief`: One-line summary of improvements (recommended)
+- `detailed`: List each specific change made
+
+### excludePatterns
+**Type:** array of glob patterns
+**Default:** `[]`
+
+Additional file patterns to skip beyond the default exclusions.
+
+Default exclusions (always applied):
+- `node_modules/`, `.git/`, `dist/`, `build/`, `coverage/`
+- `.next/`, `.nuxt/`, `vendor/`, `target/`, `__pycache__/`
+
+Custom patterns supplement these defaults.
+
+**Examples:**
+```yaml
+excludePatterns:
+  - "**/*.test.js"      # Skip all test files
+  - "**/*.spec.ts"      # Skip TypeScript spec files
+  - "**/legacy/**"      # Skip entire legacy directory
+  - "**/migrations/*"   # Skip database migrations
+  - "**/*.generated.*"  # Skip generated code
+```
+
+### customRules
+**Type:** string (markdown)
+**Default:** `""`
+
+Project-specific simplification rules in free-form markdown.
+
+These rules are provided to the code-simplifier agent as additional instructions beyond the standard patterns from CLAUDE.md.
+
+**Examples:**
+```yaml
+customRules: |
+  - Always use async/await instead of .then() chains
+  - Prefer named exports over default exports
+  - Extract magic numbers to SCREAMING_SNAKE_CASE constants
+  - Use optional chaining (?.) for safe property access
+  - Prefer Array.from() over spread for array-like objects
+  - Always include explicit return types for functions
+  - Use const for all variables unless mutation is required
+```
+
+## Usage
+
+1. Copy this example file to `.claude/code-simplifier.local.md` in your project root
+2. Customize settings for your project needs
+3. The plugin will automatically read these settings
+4. Changes take effect immediately for manual `/simplify` commands
+5. For automatic simplification, restart Claude Code session
+
+## Tips
+
+- Start with default settings and adjust based on experience
+- Use `verbosity: detailed` temporarily when debugging unexpected changes
+- Add file patterns to `excludePatterns` if certain files shouldn't be simplified
+- Keep `customRules` focused on project-specific patterns
+- Document any unusual rules with comments in this file
+
+## Temporary Disable
+
+To temporarily disable automatic simplification without removing the plugin:
+
+```yaml
+enabled: false
+```
+
+Manual `/simplify` commands will still work.
+
+## Examples by Project Type
+
+### React/TypeScript Project
+```yaml
+---
+enabled: true
+verbosity: brief
+excludePatterns:
+  - "**/*.test.tsx"
+  - "**/*.stories.tsx"
+  - "**/dist/**"
+customRules: |
+  - Use explicit Props type for all React components
+  - Prefer function components over class components
+  - Extract inline styles to styled-components or CSS modules
+  - Use useMemo for expensive calculations
+---
+```
+
+### Node.js/Express API
+```yaml
+---
+enabled: true
+verbosity: brief
+excludePatterns:
+  - "**/*.test.js"
+  - "**/migrations/**"
+customRules: |
+  - Use async/await for all asynchronous operations
+  - Extract middleware to separate files
+  - Prefer explicit error handling over try/catch
+  - Use const for all route handlers
+---
+```
+
+### Python Project
+```yaml
+---
+enabled: true
+verbosity: brief
+excludePatterns:
+  - "**/*_test.py"
+  - "**/venv/**"
+  - "**/__pycache__/**"
+customRules: |
+  - Use type hints for all function parameters and returns
+  - Prefer list comprehensions over loops where appropriate
+  - Use pathlib instead of os.path
+  - Follow PEP 8 naming conventions strictly
+---
+```
