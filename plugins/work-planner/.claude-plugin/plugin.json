@@ -1,0 +1,15 @@
+{
+  "name": "work-planner",
+  "version": "0.1.0",
+  "description": "Comprehensive pre-implementation planning and codebase analysis. Analyzes requests, explores codebases, and proposes detailed implementation plans before code is written",
+  "author": {
+    "name": "Akim Khalilov"
+  },
+  "keywords": [
+    "planning",
+    "codebase-analysis",
+    "task-planning",
+    "implementation-strategy",
+    "code-exploration"
+  ]
+}

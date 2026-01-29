@@ -5,5 +5,11 @@
   "author": {
     "name": "Akim Khalilov"
   },
-  "keywords": ["code-quality", "refactoring", "simplification", "best-practices", "automation"]
+  "keywords": [
+    "code-quality",
+    "refactoring",
+    "simplification",
+    "best-practices",
+    "automation"
+  ]
 }

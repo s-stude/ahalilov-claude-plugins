@@ -1,0 +1,45 @@
+---
+enabled: true
+verbosity: detailed  # silent | brief | detailed
+thoroughness: medium # quick | medium | thorough
+maxFilesToExplore: 20
+excludePatterns:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.next/**"
+  - "**/*.min.js"
+  - "**/*.bundle.js"
+customGuidelines: |
+  # Project-Specific Planning Guidelines
+  - Always consider backward compatibility
+  - Check for existing patterns in /core directory
+  - Follow the project's architecture decision records (ADRs)
+---
+
+# Project-Specific Context
+
+Add project-specific context that should inform planning decisions.
+
+## Architecture Principles
+
+- List key architectural principles
+- Document important patterns to follow
+- Note constraints or requirements
+
+## Common Patterns
+
+- Describe common code patterns used in this project
+- Link to internal documentation if available
+
+## Testing Requirements
+
+- Specify testing standards
+- Note coverage requirements
+- Describe test organization
+
+## Deployment Considerations
+
+- Note deployment constraints
+- Describe environment-specific concerns
+- List compliance requirements
